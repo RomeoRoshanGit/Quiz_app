@@ -11,10 +11,10 @@ class QuizPageView extends GetView<QuizPageController> {
 
   Widget build(BuildContext context) {
     controller.context = context;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorRes.bgColor,
-        body: Stack(
+    return Scaffold(
+      backgroundColor: ColorRes.bgColor,
+      body: SafeArea(
+        child: Stack(
           children: [
             Positioned(
               child: Align(
@@ -132,20 +132,20 @@ class QuizPageView extends GetView<QuizPageController> {
                 },
                 icon:Icon(Icons.arrow_back_ios,color: ColorRes.bgColor),),
             ),
-
+            
           ],
         ),
-        floatingActionButton: Obx(()=>
-          controller.questionAnswered.value==false?
-              SizedBox():
-          FloatingActionButton(
-            onPressed: () {
-              controller.nextQuestion();
-            },
-            backgroundColor: ColorRes.purpleAcc!.withOpacity(.7),
-            child: const Icon(Icons.arrow_forward_ios, color: ColorRes.bgColor),
-          )
-        ),
+      ),
+      floatingActionButton: Obx(()=>
+        controller.questionAnswered.value==false?
+            SizedBox():
+        FloatingActionButton(
+          onPressed: () {
+            controller.nextQuestion();
+          },
+          backgroundColor: ColorRes.purpleAcc!.withOpacity(.7),
+          child: const Icon(Icons.arrow_forward_ios, color: ColorRes.bgColor),
+        )
       ),
     );
   }
