@@ -136,7 +136,7 @@ class QuizPageController extends GetxController {
             },
             child: Expanded(
               child: Container(
-                width: 90,
+                width: 110,
                 height: 50,
                 decoration: BoxDecoration(
                     color: ColorRes.primary,
@@ -147,26 +147,7 @@ class QuizPageController extends GetxController {
             ),
           ),
         ),
-        cancel: Padding(
-          padding: const EdgeInsets.only(right: 2.0,bottom: 30,top: 5),
-          child: Expanded(
-            child: GestureDetector(
-              onTap: (){
-                Get.back();
-              },
-              child: Container(
-                width: 90,
-                height: 50,
-                decoration: BoxDecoration(
-                    color: ColorRes.bgColor,
-                    border: Border.all(color: ColorRes.primary!),
-                    borderRadius: BorderRadius.circular(10)
-                ),
-                child: Center(child: Text("Cancel",style: textMedium(color: ColorRes.primary),),),
-              ),
-            ),
-          ),
-        ),
+        cancel: SizedBox(),
         titleStyle: textSemiBold(size: 20),
         middleTextStyle: textRegular(size: 12,color: ColorRes.secondary),
         title: "Quiz Over",
@@ -208,15 +189,14 @@ class QuizPageController extends GetxController {
         update();
       } else {
         borderColor.value = Colors.red;
-        update();// Incorrect answer
+        update();
       }
     } else if (isCorrectAnswer(index) && questionAnswered.value) {
       borderColor.value = Colors.green;
       update();
-      // Show correct answer in green
     } else {
       borderColor.value = ColorRes.secondary;
-      update();// Default color
+      update();
     }
 
   }

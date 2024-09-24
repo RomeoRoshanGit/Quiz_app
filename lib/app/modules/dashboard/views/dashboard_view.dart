@@ -36,7 +36,7 @@ class DashboardView extends GetView<DashboardController> {
             Expanded(
               child: GestureDetector(
                 onTap: (){
-                  Get.offAllNamed(Routes.QUIZ_PAGE,arguments: ['Physics',controller.name]);
+                  Get.toNamed(Routes.QUIZ_PAGE,arguments: ['Physics',controller.name]);
                 },
                 child: Container(
                   width: double.infinity,
@@ -70,7 +70,7 @@ class DashboardView extends GetView<DashboardController> {
             Expanded(
               child: GestureDetector(
                 onTap: (){
-                  Get.offAllNamed(Routes.QUIZ_PAGE,arguments: ['Biology',controller.name]);
+                  Get.toNamed(Routes.QUIZ_PAGE,arguments: ['Biology',controller.name]);
                 },
                 child: Container(
                   width: double.infinity,
@@ -104,7 +104,7 @@ class DashboardView extends GetView<DashboardController> {
             Expanded(
               child: GestureDetector(
                 onTap: (){
-                  Get.offAllNamed(Routes.QUIZ_PAGE,arguments: ['Chemistry',controller.name]);
+                  Get.toNamed(Routes.QUIZ_PAGE,arguments: ['Chemistry',controller.name]);
                 },
                 child: Container(
                   width: double.infinity,

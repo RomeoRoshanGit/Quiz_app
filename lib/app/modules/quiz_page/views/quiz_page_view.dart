@@ -120,6 +120,14 @@ class QuizPageView extends GetView<QuizPageController> {
                 ),
               ),
             ),
+            Padding(padding: EdgeInsets.all(10),
+              child: IconButton(
+                onPressed: (){
+                  Get.back();
+                },
+                icon:Icon(Icons.arrow_back_ios,color: ColorRes.bgColor),),
+            ),
+
           ],
         ),
         floatingActionButton: Obx(()=>
