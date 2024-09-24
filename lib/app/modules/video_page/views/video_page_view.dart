@@ -11,33 +11,35 @@ class VideoPageView extends GetView<VideoPageController> {
   VideoPageView({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
-          child: Obx(() {
-            if (!videoController.isInitialized.value) {
-              return const CupertinoActivityIndicator();
-            } else {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AspectRatio(
-                    aspectRatio: videoController.videoPlayerController.value.aspectRatio,
-                    child: VideoPlayer(videoController.videoPlayerController),
-                  ),
-                  const SizedBox(height: 20),
-                ],
-              );
-            }
-          }),
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Center(
+            child: Obx(() {
+              if (!videoController.isInitialized.value) {
+                return const CupertinoActivityIndicator();
+              } else {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AspectRatio(
+                      aspectRatio: videoController.videoPlayerController.value.aspectRatio,
+                      child: VideoPlayer(videoController.videoPlayerController),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+                );
+              }
+            }),
+          ),
         ),
+        floatingActionButton: Obx(()=>FloatingActionButton(
+          onPressed: videoController.togglePlayPause,
+          child: Icon(
+            videoController.isPlaying.value ? Icons.pause : Icons.play_arrow,
+          ),
+        ),)
       ),
-      floatingActionButton: Obx(()=>FloatingActionButton(
-        onPressed: videoController.togglePlayPause,
-        child: Icon(
-          videoController.isPlaying.value ? Icons.pause : Icons.play_arrow,
-        ),
-      ),)
     );
 
   }
