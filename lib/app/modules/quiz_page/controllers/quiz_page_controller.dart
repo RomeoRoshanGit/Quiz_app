@@ -123,6 +123,7 @@ class QuizPageController extends GetxController {
   nextQuestion() {
     if(questionIndex.value>1){
       return Get.dialog(
+        barrierDismissible: false,
           Dialog(
             insetPadding: const EdgeInsets.symmetric(horizontal: 16),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -153,29 +154,6 @@ class QuizPageController extends GetxController {
                     ),
                     Row(
                       children: [
-                        Expanded(
-                            child: GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(vertical: 16),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(color: ColorRes.secondary)),
-                                child: Center(
-                                  child: Text(
-                                    "Cancel",
-                                    style:
-                                    textMedium(size: 16, color: ColorRes.textColor),
-                                  ),
-                                ),
-                              ),
-                            )),
-                        const SizedBox(
-                          width: 16,
-                        ),
                         Expanded(
                           child: GestureDetector(
                             onTap: (){
