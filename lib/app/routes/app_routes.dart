@@ -8,6 +8,7 @@ abstract class Routes {
   static const DASHBOARD = _Paths.DASHBOARD;
   static const QUIZ_PAGE = _Paths.QUIZ_PAGE;
   static const VIDEO_PAGE = _Paths.VIDEO_PAGE;
+  static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const DASHBOARD = '/dashboard';
   static const QUIZ_PAGE = '/quiz-page';
   static const VIDEO_PAGE = '/video-page';
+  static const SPLASH_SCREEN = '/splash-screen';
 }

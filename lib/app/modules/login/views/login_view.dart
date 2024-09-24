@@ -11,25 +11,30 @@ class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorRes.bgColor,
-        body: Column(
+    return Scaffold(
+      backgroundColor: ColorRes.bgColor,
+      body: SafeArea(
+        child: Column(
           children: [
             Stack(
               children: [
-                SizedBox(
-                    width: Get.width,
-                    height: Get.height/2.3,
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(40),
-                          bottomRight: Radius.circular(40)),
-                      child: Image.asset(
-                        'assets/images/bg.jpg',
-                        fit: BoxFit.fill,
-                      ),
-                    )),
+                Positioned(
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: SizedBox(
+                        width: Get.width,
+                        height: Get.height/2.3,
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(40),
+                              bottomRight: Radius.circular(40)),
+                          child: Image.asset(
+                            'assets/images/bg.jpg',
+                            fit: BoxFit.fill,
+                          ),
+                        )),
+                  ),
+                ),
                 Positioned.fill(
                   child: Align(
                     alignment: Alignment.bottomLeft,
@@ -149,7 +154,7 @@ class LoginView extends GetView<LoginController> {
                             GestureDetector(
                                 onTap: (){
                                   Get.offAllNamed(Routes.SIGN_UP);
-      },
+            },
                                 child: Text("Sign up",style: textRegular(color: ColorRes.primary),))
                           ],
                         )
@@ -159,11 +164,11 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
             ),
-      
+            
           ],
         ),
-      
       ),
+    
     );
   }
 }

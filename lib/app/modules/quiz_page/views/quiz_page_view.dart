@@ -16,69 +16,74 @@ class QuizPageView extends GetView<QuizPageController> {
         backgroundColor: ColorRes.bgColor,
         body: Stack(
           children: [
-            Column(
-              children: [
-                SizedBox(
-                  width: Get.width,
-                  height: 330,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(40),
-                      bottomRight: Radius.circular(40),
-                    ),
-                    child: Image.asset(
-                      'assets/images/bg.jpg',
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 80),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Obx(
-                      () => ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: controller
-                            .questions[controller.questionIndex.value]['options']
-                            .length,
-                        itemBuilder: (context, index) {
-                    
-                          return GestureDetector(
-                            onTap: () {
-                              if(controller.questionAnswered.value==false){
-                                controller.selectOption(index);
-                              }
-                            },
-                            child: Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: Obx(
-                                  () => Container(
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(
-                                      color:
-                                      controller.correctIndex.value!=index?
-                                      controller.selectedOption.value==index?controller.borderColor.value:ColorRes.secondary:ColorRes.success),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: Text(
-                                        controller.questions[controller
-                                            .questionIndex.value]['options'][index],
-                                        style: textRegular(),
-                                      ),
-                                    ),
-                                  ),
-                                )),
-                          );
-                        },
+            Positioned(
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: Get.width,
+                      height: 330,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(40),
+                          bottomRight: Radius.circular(40),
+                        ),
+                        child: Image.asset(
+                          'assets/images/bg.jpg',
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
-                  ),
+                    const SizedBox(height: 80),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Obx(
+                          () => ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: controller
+                                .questions[controller.questionIndex.value]['options']
+                                .length,
+                            itemBuilder: (context, index) {
+                        
+                              return GestureDetector(
+                                onTap: () {
+                                  if(controller.questionAnswered.value==false){
+                                    controller.selectOption(index);
+                                  }
+                                },
+                                child: Padding(
+                                    padding: const EdgeInsets.all(16),
+                                    child: Obx(
+                                      () => Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(8),
+                                          border: Border.all(
+                                          color:
+                                          controller.correctIndex.value!=index?
+                                          controller.selectedOption.value==index?controller.borderColor.value:ColorRes.secondary:ColorRes.success),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(16.0),
+                                          child: Text(
+                                            controller.questions[controller
+                                                .questionIndex.value]['options'][index],
+                                            style: textRegular(),
+                                          ),
+                                        ),
+                                      ),
+                                    )),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
             Positioned.fill(
               child: Align(

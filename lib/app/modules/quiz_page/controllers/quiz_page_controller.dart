@@ -123,6 +123,7 @@ class QuizPageController extends GetxController {
   void nextQuestion() {
     if(questionIndex.value>1){
       Get.defaultDialog(
+        barrierDismissible: false,
         contentPadding: EdgeInsets.all(5),
         titlePadding: EdgeInsets.only(top: 30),
 
