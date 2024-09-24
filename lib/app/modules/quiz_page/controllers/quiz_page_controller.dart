@@ -120,49 +120,88 @@ class QuizPageController extends GetxController {
     return questions[questionIndex.value]['correctAnswer'] == questions[questionIndex.value]['options'][index];
   }
 
-  void nextQuestion() {
+  nextQuestion() {
     if(questionIndex.value>1){
-      Get.defaultDialog(
-        barrierDismissible: false,
-        contentPadding: EdgeInsets.all(5),
-        titlePadding: EdgeInsets.only(top: 30),
-
-        backgroundColor: ColorRes.bgColor,
-        confirm: Padding(
-          padding: const EdgeInsets.only(left: 2.0,bottom: 30,top: 5),
-          child: GestureDetector(
-            onTap: (){
-              Get.back();
-              Get.offAllNamed(Routes.DASHBOARD,arguments: name);
-            },
-            child: Expanded(
-              child: Container(
-                width: 110,
-                height: 50,
-                decoration: BoxDecoration(
-                    color: ColorRes.primary,
-                    borderRadius: BorderRadius.circular(10)
+      return Get.dialog(
+          Dialog(
+            insetPadding: const EdgeInsets.symmetric(horizontal: 16),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Quiz Completed",
+                      style: textSemiBold(size: 16, color: ColorRes.textColor),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      "You have scored $score",
+                      style: textRegular(size: 14, color: ColorRes.secondary),
+                    ),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                            child: GestureDetector(
+                              behavior: HitTestBehavior.opaque,
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(vertical: 16),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: ColorRes.secondary)),
+                                child: Center(
+                                  child: Text(
+                                    "Cancel",
+                                    style:
+                                    textMedium(size: 16, color: ColorRes.textColor),
+                                  ),
+                                ),
+                              ),
+                            )),
+                        const SizedBox(
+                          width: 16,
+                        ),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: (){
+                              Get.offAllNamed(Routes.DASHBOARD,arguments: name);
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: ColorRes.primary),
+                              child: Center(
+                                child: Text(
+                                  "Dashboard",
+                                  style: textMedium(size: 16, color: ColorRes.bgColor),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                child: Center(child: Text("Dashboard",style: textMedium(color: ColorRes.bgColor),)),
               ),
             ),
-          ),
-        ),
-        cancel: SizedBox(),
-        titleStyle: textSemiBold(size: 20),
-        middleTextStyle: textRegular(size: 12,color: ColorRes.secondary),
-        title: "Quiz Over",
-        middleText: "You have scored $score.",
-        textConfirm: "Confirm",
-        textCancel: "Cancel",
-        onConfirm: () {
-          Get.back(); // Close the dialog on confirm
-          print("Confirmed");
-        },
-        onCancel: () {
-          Get.back();
-          print("Canceled");
-        },
+          )
       );
 
     }
