@@ -35,7 +35,7 @@ class LoginController extends GetxController {
       for (var user in usersList) {
         if (user['email'] == emailController.text &&
             user['password'] == passwordController.text) {
-          Get.offAllNamed(Routes.DASHBOARD,arguments: user['name']);
+          Get.offAllNamed(Routes.DASHBOARD,arguments: user['admno']);
           flag=true;
         }
 

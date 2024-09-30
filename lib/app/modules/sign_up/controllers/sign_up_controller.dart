@@ -9,10 +9,17 @@ class SignUpController extends GetxController {
   TextEditingController nameController=TextEditingController();
   TextEditingController emailController=TextEditingController();
   TextEditingController passwordController=TextEditingController();
+  TextEditingController admnoController=TextEditingController();
   final formKey = GlobalKey<FormState>();
   final storage=GetStorage();
   final count = 0.obs;
   RxBool hidePassword=true.obs;
+  List<String> universities=<String>['M G University','KTU','Calicut University'];
+  String selectedUniversity='M G University';
+  List<String> courses=<String>['Bsc Physics','MCA','Bsc Maths'];
+  String selectedCourse='Bsc Physics';
+
+
   @override
   void onInit() {
     super.onInit();
@@ -29,16 +36,20 @@ class SignUpController extends GetxController {
   }
 
   void submitForm() {
+    print("$selectedCourse $selectedUniversity");
     if (formKey.currentState!.validate()) {
       Map<String, String> newUser = {
         'name': nameController.text,
         'email': emailController.text,
         'password': passwordController.text,
+        'university':selectedUniversity,
+        'course':selectedCourse,
+        'admno':admnoController.text
       };
       List<dynamic> usersList = storage.read<List>('users') ?? [];
       usersList.add(newUser);
       storage.write('users', usersList);
-      Get.offAllNamed(Routes.DASHBOARD,arguments: nameController.text);
+      Get.offAllNamed(Routes.DASHBOARD,arguments: admnoController.text);
     } else {
     }
   }
@@ -50,6 +61,16 @@ class SignUpController extends GetxController {
   String? validateName(String? value) {
     if (value == null || value.isEmpty) {
       return "Name is required";
+    }
+    return null;
+  }
+
+  String? validateAdmno(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Admno is required";
+    }
+    else if(value.length!=6){
+      return "Input a 6 digit admno";
     }
     return null;
   }

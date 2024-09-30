@@ -6,6 +6,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/quiz_page/bindings/quiz_page_binding.dart';
 import '../modules/quiz_page/views/quiz_page_view.dart';
+import '../modules/quiz_video/bindings/quiz_video_binding.dart';
+import '../modules/quiz_video/views/quiz_video_view.dart';
 import '../modules/sign_up/bindings/sign_up_binding.dart';
 import '../modules/sign_up/views/sign_up_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
@@ -18,7 +20,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH_SCREEN;
+  static const INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.SPLASH_SCREEN,
       page: () => const SplashScreenView(),
       binding: SplashScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.QUIZ_VIDEO,
+      page: () => QuizVideoView(),
+      binding: QuizVideoBinding(),
     ),
   ];
 }

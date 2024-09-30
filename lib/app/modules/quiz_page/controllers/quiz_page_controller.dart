@@ -10,7 +10,7 @@ class QuizPageController extends GetxController {
   //TODO: Implement QuizPageController
   late BuildContext context;
   String subject='';
-  String name='';
+  String admno='';
   RxList questions=[].obs;
   RxInt questionIndex=0.obs;
   var selectedOption = (-1).obs;
@@ -19,63 +19,197 @@ class QuizPageController extends GetxController {
   int score=0;
 
   Map<String, List<Map<String, dynamic>>> quizData = {
-    'Physics': [
+    'Networks': [
       {
-        'question': 'What is the unit of force?',
-        'options': ['Newton', 'Joule', 'Watt', 'Pascal'],
-        'correctAnswer': 'Newton',
+        'question': 'What is the primary protocol used for internet communication?',
+        'options': ['HTTP', 'FTP', 'TCP/IP', 'SMTP'],
+        'correctAnswer': 'TCP/IP',
       },
       {
-        'question': 'What is the speed of light?',
-        'options': ['300,000 km/s', '150,000 km/s', '1,000 km/s', '3,000 km/s'],
-        'correctAnswer': '150,000 km/s',
+        'question': 'What does DNS stand for?',
+        'options': ['Domain Name Service', 'Dynamic Network System', 'Domain Name System', 'Data Name Server'],
+        'correctAnswer': 'Domain Name System',
       },
       {
-        'question': 'What is the law of inertia?',
+        'question': 'Which layer of the OSI model does routing occur?',
+        'options': ['Physical', 'Data Link', 'Network', 'Transport'],
+        'correctAnswer': 'Network',
+      },
+    ],
+    'Data Structures': [
+      {
+        'question': 'What data structure uses the First In First Out (FIFO) principle?',
+        'options': ['Stack', 'Queue', 'Tree', 'Graph'],
+        'correctAnswer': 'Queue',
+      },
+      {
+        'question': 'What is a binary search tree?',
         'options': [
-          'An object at rest stays at rest',
-          'Force equals mass times acceleration',
-          'Energy cannot be created or destroyed',
-          'For every action, there is an equal and opposite reaction'
+          'A tree where each node has two children',
+          'A tree where each node has at most two children',
+          'A tree where left child is smaller and right child is larger',
+          'A balanced tree with equal height subtrees'
         ],
-        'correctAnswer': 'An object at rest stays at rest',
+        'correctAnswer': 'A tree where left child is smaller and right child is larger',
+      },
+      {
+        'question': 'Which of these is a linear data structure?',
+        'options': ['Tree', 'Graph', 'Queue', 'Heap'],
+        'correctAnswer': 'Queue',
       },
     ],
-    'Chemistry': [
+    'DBMS': [
       {
-        'question': 'What is the chemical symbol for water?',
-        'options': ['H2O', 'O2', 'CO2', 'NaCl'],
-        'correctAnswer': 'H2O',
+        'question': 'What is the primary key?',
+        'options': ['A unique identifier for a record', 'A foreign key', 'An encrypted key', 'A primary value'],
+        'correctAnswer': 'A unique identifier for a record',
       },
       {
-        'question': 'What is the pH of pure water?',
-        'options': ['7', '0', '14', '3'],
-        'correctAnswer': '7',
+        'question': 'What does SQL stand for?',
+        'options': ['Structured Query Language', 'Simple Query Language', 'System Query Language', 'Syntax Query Language'],
+        'correctAnswer': 'Structured Query Language',
       },
       {
-        'question': 'Which gas is produced during photosynthesis?',
-        'options': ['Oxygen', 'Carbon Dioxide', 'Nitrogen', 'Hydrogen'],
-        'correctAnswer': 'Oxygen',
-      },
-    ],
-    'Biology': [
-      {
-        'question': 'What is the powerhouse of the cell?',
-        'options': ['Nucleus', 'Mitochondria', 'Ribosome', 'Endoplasmic Reticulum'],
-        'correctAnswer': 'Mitochondria',
-      },
-      {
-        'question': 'Which organ is responsible for pumping blood?',
-        'options': ['Liver', 'Lungs', 'Heart', 'Kidneys'],
-        'correctAnswer': 'Heart',
-      },
-      {
-        'question': 'What is the basic unit of life?',
-        'options': ['Tissue', 'Organ', 'Cell', 'System'],
-        'correctAnswer': 'Cell',
+        'question': 'Which type of join returns all records when there is a match in either table?',
+        'options': ['INNER JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'FULL JOIN'],
+        'correctAnswer': 'FULL JOIN',
       },
     ],
+    'Quantum': [
+      {
+        'question': 'What is the principle of quantum superposition?',
+        'options': [
+          'Particles exist in one state at a time',
+          'Particles exist in all possible states simultaneously',
+          'Energy cannot be created or destroyed',
+          'Wave and particle duality'
+        ],
+        'correctAnswer': 'Particles exist in all possible states simultaneously',
+      },
+      {
+        'question': 'Who is known as the father of quantum mechanics?',
+        'options': ['Albert Einstein', 'Niels Bohr', 'Max Planck', 'Isaac Newton'],
+        'correctAnswer': 'Max Planck',
+      },
+      {
+        'question': 'What is Heisenberg’s Uncertainty Principle?',
+        'options': ['Position and momentum cannot be precisely measured simultaneously',
+          'Energy and time cannot be precisely measured simultaneously',
+          'Mass and energy are equivalent',
+          'Electrons revolve in fixed orbits'],
+        'correctAnswer': 'Position and momentum cannot be precisely measured simultaneously',
+      },
+    ],
+    'Electromagnetism': [
+      {
+        'question': 'What is the unit of electric current?',
+        'options': ['Volt', 'Coulomb', 'Ampere', 'Ohm'],
+        'correctAnswer': 'Ampere',
+      },
+      {
+        'question': 'What law describes the force between two electric charges?',
+        'options': ["Coulomb's Law", "Faraday's Law", "Gauss's Law", "Ohm's Law"],
+        'correctAnswer': "Coulomb's Law",
+      },
+      {
+        'question': 'What creates a magnetic field?',
+        'options': ['Stationary charges', 'Moving charges', 'Massive objects', 'Thermal energy'],
+        'correctAnswer': 'Moving charges',
+      },
+    ],
+    'Mechanics': [
+      {
+        'question': 'What is Newton’s Second Law of Motion?',
+        'options': [
+          'For every action, there is an equal and opposite reaction',
+          'Force equals mass times acceleration',
+          'An object at rest stays at rest',
+          'Energy cannot be created or destroyed'
+        ],
+        'correctAnswer': 'Force equals mass times acceleration',
+      },
+      {
+        'question': 'What is the unit of energy?',
+        'options': ['Newton', 'Joule', 'Pascal', 'Watt'],
+        'correctAnswer': 'Joule',
+      },
+      {
+        'question': 'What is kinetic energy?',
+        'options': [
+          'Energy stored in an object',
+          'Energy an object has due to motion',
+          'Energy due to an object’s position',
+          'Energy due to heat'
+        ],
+        'correctAnswer': 'Energy an object has due to motion',
+      },
+    ],
+    'Algebra': [
+      {
+        'question': 'What is the solution to the equation 2x + 3 = 7?',
+        'options': ['x = 2', 'x = 3', 'x = 1', 'x = 0'],
+        'correctAnswer': 'x = 2',
+      },
+      {
+        'question': 'What does the term “matrix” refer to in linear algebra?',
+        'options': ['A set of vectors', 'A rectangular array of numbers', 'A single variable equation', 'A function'],
+        'correctAnswer': 'A rectangular array of numbers',
+      },
+      {
+        'question': 'What is the determinant of a matrix?',
+        'options': ['A number that describes the matrix', 'A type of vector', 'The inverse of the matrix', 'The rank of the matrix'],
+        'correctAnswer': 'A number that describes the matrix',
+      },
+    ],
+    'Calculus': [
+      {
+        'question': 'What is the derivative of x^2?',
+        'options': ['2x', 'x', 'x^3', '1'],
+        'correctAnswer': '2x',
+      },
+      {
+        'question': 'What is the integral of 1/x?',
+        'options': ['ln(x)', 'x^2', '1/x', 'x'],
+        'correctAnswer': 'ln(x)',
+      },
+      {
+        'question': 'What is the concept of a limit?',
+        'options': [
+          'The value a function approaches as the input approaches a certain point',
+          'The highest value of a function',
+          'The smallest value of a function',
+          'The area under a curve'
+        ],
+        'correctAnswer': 'The value a function approaches as the input approaches a certain point',
+      },
+    ],
+    'Probability': [
+      {
+        'question': 'What is the probability of getting heads in a fair coin toss?',
+        'options': ['1/2', '1/3', '1/4', '1/6'],
+        'correctAnswer': '1/2',
+      },
+      {
+        'question': 'What is the expected value in probability?',
+        'options': [
+          'The average outcome over many trials',
+          'The highest possible outcome',
+          'The most frequent outcome',
+          'The median value of the outcomes'
+        ],
+        'correctAnswer': 'The average outcome over many trials',
+      },
+      {
+        'question': 'What is a random variable?',
+        'options': ['A variable that can take any value',
+          'A variable that depends on random outcomes',
+          'A constant value',
+          'A deterministic value'],
+        'correctAnswer': 'A variable that depends on random outcomes',
+      },
+    ]
   };
+
 
 
 
@@ -84,7 +218,7 @@ class QuizPageController extends GetxController {
   void onInit() {
     List data=Get.arguments as List;
     subject=data[0];
-    name=data[1];
+    admno=data[1];
     setQuestions(subject);
     super.onInit();
   }
@@ -157,7 +291,7 @@ class QuizPageController extends GetxController {
                         Expanded(
                           child: GestureDetector(
                             onTap: (){
-                              Get.offAllNamed(Routes.DASHBOARD,arguments: name);
+                              Get.offAllNamed(Routes.DASHBOARD,arguments: admno);
                             },
                             child: Container(
                               padding: const EdgeInsets.symmetric(vertical: 16),

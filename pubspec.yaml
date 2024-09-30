@@ -65,6 +65,9 @@ flutter:
   assets:
     - assets/images/bg.jpg
     - assets/videos/detail.mp4
+    - assets/videos/mca.mp4
+    - assets/videos/physics.mp4
+    - assets/videos/maths.mp4
   fonts:
     - family: PoppinsBlack
       fonts:

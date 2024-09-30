@@ -9,6 +9,7 @@ abstract class Routes {
   static const QUIZ_PAGE = _Paths.QUIZ_PAGE;
   static const VIDEO_PAGE = _Paths.VIDEO_PAGE;
   static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
+  static const QUIZ_VIDEO = _Paths.QUIZ_VIDEO;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const QUIZ_PAGE = '/quiz-page';
   static const VIDEO_PAGE = '/video-page';
   static const SPLASH_SCREEN = '/splash-screen';
+  static const QUIZ_VIDEO = '/quiz-video';
 }

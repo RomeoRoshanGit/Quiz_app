@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:quiz_app/app/modules/utils/color_res.dart';
@@ -159,6 +160,104 @@ class SignUpView extends GetView<SignUpController> {
                               }, icon: const Icon(Icons.remove_red_eye,color: ColorRes.secondary,))
                           ),
                         ),),
+                    const SizedBox(height: 15,),
+                    Text("University",style: textMedium(color: ColorRes.primary,size: 14),),
+                    const SizedBox(height: 4,),
+                    DropdownMenu(
+                      width: double.infinity,
+                      initialSelection: controller.universities[0],
+                      onSelected: (String? value) {
+                        controller.selectedUniversity=value??"M G University";
+                      },
+                      dropdownMenuEntries: controller.universities
+                          .map<DropdownMenuEntry<String>>((String value) {
+                        return DropdownMenuEntry<String>(value: value, label: value);
+                      }).toList(),
+                      inputDecorationTheme: InputDecorationTheme(
+                          border: OutlineInputBorder(
+                              borderSide:
+                              const BorderSide(color: ColorRes.secondary, width: 0),
+                              borderRadius: BorderRadius.circular(10)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                width: 1,
+                                color: ColorRes.secondary,
+                              ),
+                              borderRadius: BorderRadius.circular(10)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                              const BorderSide(width: 1, color: ColorRes.secondary),
+                              borderRadius: BorderRadius.circular(10))
+                      ),
+                      menuHeight: 200,
+                      menuStyle: MenuStyle(
+                        backgroundColor: MaterialStateProperty.all(ColorRes.bgColor),
+                        shadowColor: MaterialStateProperty.all(ColorRes.secondary),
+                        elevation: MaterialStateProperty.all(5),
+                      ),
+                    ),
+                    const SizedBox(height: 15,),
+                    Text("Course",style: textMedium(color: ColorRes.primary,size: 14),),
+                    const SizedBox(height: 4,),
+                    DropdownMenu(
+                      width: double.infinity,
+                      initialSelection: controller.courses[0],
+                      onSelected: (String? value) {
+                        controller.selectedCourse=value??"M G University";
+                      },
+                      dropdownMenuEntries: controller.courses
+                          .map<DropdownMenuEntry<String>>((String value) {
+                        return DropdownMenuEntry<String>(value: value, label: value);
+                      }).toList(),
+                      inputDecorationTheme: InputDecorationTheme(
+                          border: OutlineInputBorder(
+                              borderSide:
+                              const BorderSide(color: ColorRes.secondary, width: 0),
+                              borderRadius: BorderRadius.circular(10)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                width: 1,
+                                color: ColorRes.secondary,
+                              ),
+                              borderRadius: BorderRadius.circular(10)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                              const BorderSide(width: 1, color: ColorRes.secondary),
+                              borderRadius: BorderRadius.circular(10))
+                      ),
+                      menuHeight: 200,
+                      menuStyle: MenuStyle(
+                        backgroundColor: MaterialStateProperty.all(ColorRes.bgColor),
+                        shadowColor: MaterialStateProperty.all(ColorRes.secondary),
+                        elevation: MaterialStateProperty.all(5),
+                      ),
+                    ),
+                    const SizedBox(height: 15,),
+                    Text("University number",style: textMedium(color: ColorRes.primary,size: 14),),
+                    const SizedBox(height: 4,),
+                    TextFormField(
+                      validator: controller.validateAdmno,
+                      controller: controller.admnoController,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(color: ColorRes.secondary)
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: ColorRes.secondary),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(color: ColorRes.primary!)
+                          ),
+                          hintText: "University number",
+                          hintStyle: textRegular(color: ColorRes.secondary),
+                          prefixIcon: const Icon(Icons.numbers,color: ColorRes.secondary,)
+                      ),
+                    ),
                     const SizedBox(height: 30,),
                     GestureDetector(
                       onTap: controller.submitForm,

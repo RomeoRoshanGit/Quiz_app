@@ -14,11 +14,12 @@ class SplashScreenController extends GetxController {
     List<dynamic> usersList = storage.read<List>('users') ?? [];
 
     Future.delayed(Duration(seconds: 2),(){
-      if(usersList.isNotEmpty){
-        Get.offAllNamed(Routes.DASHBOARD,arguments:usersList.last['name']);
-      }else{
-        Get.offAllNamed(Routes.SIGN_UP);
-      }
+      // if(usersList.isNotEmpty){
+      //   Get.offAllNamed(Routes.DASHBOARD,arguments:usersList.last['name']);
+      // }else{
+      //   Get.offAllNamed(Routes.SIGN_UP);
+      // }
+      Get.offAllNamed(Routes.SIGN_UP);
     });
     super.onInit();
   }
